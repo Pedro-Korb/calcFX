@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.calcfx.controller.CalculatorController"
+            styleClass="root-pane">
+
+    <!-- ══════════════════════════════════════════
+         DISPLAY
+         ══════════════════════════════════════════ -->
+    <top>
+        <VBox styleClass="display-container">
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+
+            <!-- Indicadores de modo -->
+            <HBox styleClass="mode-bar" spacing="8">
+                <Label fx:id="labelAngleMode" text="RAD" styleClass="mode-indicator" />
+            </HBox>
+
+            <!-- Expressão anterior -->
+            <Label fx:id="labelExpression"
+                   text=""
+                   styleClass="label-expression"
+                   maxWidth="Infinity"
+                   alignment="CENTER_RIGHT" />
+
+            <!-- Resultado / entrada atual -->
+            <Label fx:id="labelResult"
+                   text="0"
+                   styleClass="label-result"
+                   maxWidth="Infinity"
+                   alignment="CENTER_RIGHT" />
+        </VBox>
+    </top>
+
+    <!-- ══════════════════════════════════════════
+         TECLADO
+         ══════════════════════════════════════════ -->
+    <center>
+        <GridPane styleClass="keypad" hgap="6" vgap="6">
+            <padding>
+                <Insets top="8" right="10" bottom="10" left="10" />
+            </padding>
+
+            <!-- Definição de colunas (5 colunas iguais) -->
+            <columnConstraints>
+                <ColumnConstraints percentWidth="20" />
+                <ColumnConstraints percentWidth="20" />
+                <ColumnConstraints percentWidth="20" />
+                <ColumnConstraints percentWidth="20" />
+                <ColumnConstraints percentWidth="20" />
+            </columnConstraints>
+
+            <!-- Definição de linhas (8 linhas: rows 0–7) -->
+            <rowConstraints>
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+                <RowConstraints percentHeight="12.5" />
+            </rowConstraints>
+
+            <!-- ── Linha 0 · Funções científicas: trigonometria ── -->
+            <Button text="sin"  styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="sin"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button text="cos"  styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="cos"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button text="tan"  styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="tan"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button fx:id="btnAngleMode" text="RAD" styleClass="btn-mode" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onToggleAngleMode"
+                    GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Button text="(" styleClass="btn-bracket" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="("  onAction="#onDigit"
+                    GridPane.columnIndex="4" GridPane.rowIndex="0" />
+
+            <!-- ── Linha 1 · Funções científicas: inversas e log ── -->
+            <Button text="sin⁻¹" styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="asin" onAction="#onScientificFunction"
+                    GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button text="cos⁻¹" styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="acos" onAction="#onScientificFunction"
+                    GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button text="tan⁻¹" styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="atan" onAction="#onScientificFunction"
+                    GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button text="log"   styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="log"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button text=")"     styleClass="btn-bracket" maxWidth="Infinity" maxHeight="Infinity"
+                    userData=")"    onAction="#onDigit"
+                    GridPane.columnIndex="4" GridPane.rowIndex="1" />
+
+            <!-- ── Linha 2 · Potência, raiz e constantes ── -->
+            <Button text="xʸ"   styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="pow"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button text="√"    styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="sqrt" onAction="#onScientificFunction"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button text="ln"   styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="ln"   onAction="#onScientificFunction"
+                    GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button text="π"    styleClass="btn-constant" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="pi"   onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button text="e"    styleClass="btn-constant" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="e"    onAction="#onScientificFunction"
+                    GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+            <!-- ── Linha 3 · Controle e dígitos superiores ── -->
+            <Button text="AC"  styleClass="btn-clear" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onClear"
+                    GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Button text="+/-" styleClass="btn-function" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onToggleSign"
+                    GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="btnPercent" styleClass="btn-function" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onPercentage"
+                    GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button text="⌫"   styleClass="btn-function" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onBackspace"
+                    GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button text="÷"   styleClass="btn-operator" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="/"    onAction="#onOperator"
+                    GridPane.columnIndex="4" GridPane.rowIndex="3" />
+
+            <!-- ── Linha 4 · Dígitos 7 8 9 e × ── -->
+            <Button text="7" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Button text="8" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button text="9" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button text="x²"  styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="sq"   onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button text="×"   styleClass="btn-operator" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="*"    onAction="#onOperator"
+                    GridPane.columnIndex="4" GridPane.rowIndex="4" />
+
+            <!-- ── Linha 5 · Dígitos 4 5 6 e − ── -->
+            <Button text="4" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <Button text="5" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button text="6" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button text="1/x" styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="inv"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button text="−"   styleClass="btn-operator" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="-"    onAction="#onOperator"
+                    GridPane.columnIndex="4" GridPane.rowIndex="5" />
+
+            <!-- ── Linha 6 · Dígitos 1 2 3 e + ── -->
+            <Button text="1" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <Button text="2" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button text="3" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button text="n!"  styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="fact" onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button text="+"   styleClass="btn-operator" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="+"    onAction="#onOperator"
+                    GridPane.columnIndex="4" GridPane.rowIndex="6" />
+
+            <!-- ── Linha 7 · Zero, ponto e = ── -->
+            <Button text="0" styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDigit"
+                    GridPane.columnIndex="0" GridPane.rowIndex="7"
+                    GridPane.columnSpan="2" />
+            <Button text="." styleClass="btn-digit" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onDecimalPoint"
+                    GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Button text="EXP" styleClass="btn-scientific" maxWidth="Infinity" maxHeight="Infinity"
+                    userData="exp"  onAction="#onScientificFunction"
+                    GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button text="="   styleClass="btn-equals" maxWidth="Infinity" maxHeight="Infinity"
+                    onAction="#onEquals"
+                    GridPane.columnIndex="4" GridPane.rowIndex="7" />
+
+        </GridPane>
+    </center>
+
+</BorderPane>

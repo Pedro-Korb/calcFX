@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════════════
+   CalcFX – Folha de estilos base
+   Paleta inspirada em calculadoras científicas modernas
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Variáveis de cor (simuladas via estilos base) ─────── */
+
+.root-pane {
+    -fx-background-color: #1c1c1e;
+}
+
+/* ── Display ────────────────────────────────────────────── */
+
+.display-container {
+    -fx-background-color: #1c1c1e;
+    -fx-padding: 16 14 10 14;
+    -fx-spacing: 4;
+}
+
+.mode-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 4 2;
+}
+
+.mode-indicator {
+    -fx-text-fill: #636366;
+    -fx-font-size: 11px;
+    -fx-font-family: "System";
+    -fx-border-color: #3a3a3c;
+    -fx-border-radius: 4;
+    -fx-padding: 1 5 1 5;
+}
+
+.label-expression {
+    -fx-text-fill: #636366;
+    -fx-font-size: 16px;
+    -fx-font-family: "System";
+    -fx-padding: 0 4 0 0;
+}
+
+.label-result {
+    -fx-text-fill: #f5f5f7;
+    -fx-font-size: 48px;
+    -fx-font-family: "System";
+    -fx-font-weight: BOLD;
+    -fx-padding: 0 4 0 0;
+}
+
+/* ── Keypad ─────────────────────────────────────────────── */
+
+.keypad {
+    -fx-background-color: #1c1c1e;
+}
+
+/* Base de todos os botões */
+.keypad .button {
+    -fx-font-size: 15px;
+    -fx-font-family: "System";
+    -fx-cursor: HAND;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-min-height: 56;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 4, 0, 0, 2);
+}
+
+/* ── Dígitos ────────────────────────────────────────────── */
+
+.btn-digit {
+    -fx-background-color: #3a3a3c;
+    -fx-text-fill: #f5f5f7;
+    -fx-font-size: 20px;
+    -fx-font-weight: BOLD;
+}
+
+.btn-digit:hover {
+    -fx-background-color: #48484a;
+}
+
+.btn-digit:pressed {
+    -fx-background-color: #636366;
+}
+
+/* ── Operadores básicos ─────────────────────────────────── */
+
+.btn-operator {
+    -fx-background-color: #ff9f0a;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 22px;
+    -fx-font-weight: BOLD;
+}
+
+.btn-operator:hover {
+    -fx-background-color: #ffb340;
+}
+
+.btn-operator:pressed {
+    -fx-background-color: #cc7d08;
+}
+
+/* ── Funções científicas ────────────────────────────────── */
+
+.btn-scientific {
+    -fx-background-color: #2c2c2e;
+    -fx-text-fill: #4fc3f7;
+    -fx-font-size: 13px;
+}
+
+.btn-scientific:hover {
+    -fx-background-color: #3a3a3c;
+}
+
+.btn-scientific:pressed {
+    -fx-background-color: #1c1c1e;
+}
+
+/* ── Constantes (π, e) ──────────────────────────────────── */
+
+.btn-constant {
+    -fx-background-color: #2c2c2e;
+    -fx-text-fill: #a78bfa;
+    -fx-font-size: 15px;
+    -fx-font-weight: BOLD;
+}
+
+.btn-constant:hover {
+    -fx-background-color: #3a3a3c;
+}
+
+/* ── Parênteses ─────────────────────────────────────────── */
+
+.btn-bracket {
+    -fx-background-color: #2c2c2e;
+    -fx-text-fill: #34d399;
+    -fx-font-size: 16px;
+}
+
+.btn-bracket:hover {
+    -fx-background-color: #3a3a3c;
+}
+
+/* ── Funções de controle (+/-, %, ⌫) ────────────────────── */
+
+.btn-function {
+    -fx-background-color: #636366;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+}
+
+.btn-function:hover {
+    -fx-background-color: #7c7c7e;
+}
+
+.btn-function:pressed {
+    -fx-background-color: #48484a;
+}
+
+/* ── Limpar (AC) ────────────────────────────────────────── */
+
+.btn-clear {
+    -fx-background-color: #ff453a;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: BOLD;
+}
+
+.btn-clear:hover {
+    -fx-background-color: #ff6961;
+}
+
+.btn-clear:pressed {
+    -fx-background-color: #cc362e;
+}
+
+/* ── Igual ──────────────────────────────────────────────── */
+
+.btn-equals {
+    -fx-background-color: #ff9f0a;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-font-weight: BOLD;
+}
+
+.btn-equals:hover {
+    -fx-background-color: #ffb340;
+}
+
+.btn-equals:pressed {
+    -fx-background-color: #cc7d08;
+}
+
+/* ── Alternância de modo (RAD/DEG) ──────────────────────── */
+
+.btn-mode {
+    -fx-background-color: #2c2c2e;
+    -fx-text-fill: #ffd60a;
+    -fx-font-size: 12px;
+    -fx-font-weight: BOLD;
+    -fx-border-color: #ffd60a;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+}
+
+.btn-mode:hover {
+    -fx-background-color: #3a3a3c;
+}
