@@ -1,3 +1,8 @@
+***VIBE CODING TESTE #2***
+<br>
+<br>
+<br>
+
 # CalcFX — Calculadora Científica
 
 Calculadora científica desktop desenvolvida com **JavaFX 21**, seguindo a arquitetura **MVC** e avaliação de expressões via algoritmo **Shunting-Yard** de Dijkstra.
